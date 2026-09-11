@@ -1,6 +1,6 @@
 """
-Chain-specific configurations, token contract definitions, decimals,
-and regex heuristics for automatic chain detection.
+Chain-specific configurations, RPC URLs, API endpoints, USDT contracts,
+block explorer URLs, token mappings, and regex heuristics for automatic chain detection.
 """
 
 from enum import Enum
@@ -32,6 +32,40 @@ CHAIN_ADDRESS_REGEX: Dict[ChainType, re.Pattern] = {
     ChainType.ETHEREUM: re.compile(r"^0x[a-fA-F0-9]{40}$"),
     # Solana addresses are 32 to 44 base58 characters
     ChainType.SOLANA: re.compile(r"^[1-9A-HJ-NP-za-km-z]{32,44}$"),
+}
+
+# Chain-specific RPCs, API endpoints, Explorer URLs and USDT contracts
+CHAIN_CONFIGS: Dict[ChainType, Dict[str, Any]] = {
+    ChainType.TRON: {
+        "name": "TRON Network",
+        "primary_token": "USDT-TRC20",
+        "usdt_contract": "TR7NHqJEKQxGTCi8q8ZY4pL8otSzgjLj6t",
+        "api_endpoint": "https://api.trongrid.io",
+        "rpc_url": "https://api.trongrid.io",
+        "explorer_tx_url": "https://tronscan.org/#/transaction/{tx_hash}",
+        "explorer_address_url": "https://tronscan.org/#/address/{address}",
+        "is_primary_fraud_chain": True
+    },
+    ChainType.ETHEREUM: {
+        "name": "Ethereum Mainnet",
+        "primary_token": "USDT-ERC20",
+        "usdt_contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+        "api_endpoint": "https://api.etherscan.io/api",
+        "rpc_url": "https://cloudflare-eth.com",
+        "explorer_tx_url": "https://etherscan.io/tx/{tx_hash}",
+        "explorer_address_url": "https://etherscan.io/address/{address}",
+        "is_primary_fraud_chain": False
+    },
+    ChainType.SOLANA: {
+        "name": "Solana Mainnet",
+        "primary_token": "USDT-SPL",
+        "usdt_contract": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+        "api_endpoint": "https://api.helius.xyz/v0",
+        "rpc_url": "https://mainnet.helius-rpc.com",
+        "explorer_tx_url": "https://solscan.io/tx/{tx_hash}",
+        "explorer_address_url": "https://solscan.io/account/{address}",
+        "is_primary_fraud_chain": False
+    }
 }
 
 # Known stablecoin and high-value token contract addresses
@@ -125,3 +159,15 @@ def get_token_decimals(chain: ChainType, symbol_or_contract: str) -> int:
             return meta["decimals"]
 
     return 6 if chain in (ChainType.TRON, ChainType.SOLANA) else 18
+
+
+def get_explorer_tx_url(chain: ChainType, tx_hash: str) -> str:
+    """Return clickable block explorer URL for a given transaction."""
+    template = CHAIN_CONFIGS[chain]["explorer_tx_url"]
+    return template.format(tx_hash=tx_hash)
+
+
+def get_explorer_address_url(chain: ChainType, address: str) -> str:
+    """Return clickable block explorer URL for a given wallet address."""
+    template = CHAIN_CONFIGS[chain]["explorer_address_url"]
+    return template.format(address=address)

@@ -16,8 +16,8 @@ class Settings(BaseSettings):
     APP_ENV: str = "development"
     DEBUG: bool = True
     HOST: str = "0.0.0.0"
-    PORT: int = 8000
     SECRET_KEY: str = "dev-secret-key-chainsleuth-sih2026-crypto-tracing"
+    JWT_SECRET: str = "dev-secret-key-chainsleuth-sih2026-crypto-tracing"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440
     API_KEY_SECRET: str = "chainsleuth-lea-internal-api-secret-key"
