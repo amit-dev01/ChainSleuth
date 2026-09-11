@@ -1,0 +1,110 @@
+[
+  {
+    "address": "TNaRAoLUyYEV2uF7GUrzSjRQTU8v5ZJ5VR",
+    "name": "Binance",
+    "entity_type": "CEX",
+    "chain": "tron",
+    "role": "HOT_WALLET",
+    "nodal_email": "compliance@binance.com",
+    "fiu_registered": true,
+    "jurisdiction": "Global",
+    "risk_rating": "LOW",
+    "notes": "Binance Official Tron Cold/Hot Consolidation Wallet"
+  },
+  {
+    "address": "TWd4SpPnMHRqeq4ndhhnP3eP1e7Jp6g4pD",
+    "name": "WazirX",
+    "entity_type": "CEX",
+    "chain": "tron",
+    "role": "HOT_WALLET",
+    "nodal_email": "nodal@wazirx.com",
+    "fiu_registered": true,
+    "jurisdiction": "India",
+    "risk_rating": "LOW",
+    "notes": "WazirX Primary Tron Hot Wallet"
+  },
+  {
+    "address": "TLyqzVGLV1srkB7dToTApsgjcjjGe9bLgh",
+    "name": "Binance",
+    "entity_type": "CEX",
+    "chain": "tron",
+    "role": "DEPOSIT_SWEEPER",
+    "nodal_email": "compliance@binance.com",
+    "fiu_registered": true,
+    "jurisdiction": "Global",
+    "risk_rating": "LOW",
+    "notes": "Binance Tron Deposit Collection Sweeper"
+  },
+  {
+    "address": "TQ3W2iM2X4pL6NqT4wZ9jP3bA2e7Y8o5Vb",
+    "name": "CoinDCX",
+    "entity_type": "CEX",
+    "chain": "tron",
+    "role": "HOT_WALLET",
+    "nodal_email": "lawenforcement@coindcx.com",
+    "fiu_registered": true,
+    "jurisdiction": "India",
+    "risk_rating": "LOW",
+    "notes": "CoinDCX Primary TRC20 Wallet"
+  },
+  {
+    "address": "TPYmHEhy5n8TCEfYGqW2rPxsghSfzghPDn",
+    "name": "KuCoin",
+    "entity_type": "CEX",
+    "chain": "tron",
+    "role": "HOT_WALLET",
+    "nodal_email": "support@kucoin.com",
+    "fiu_registered": true,
+    "jurisdiction": "Seychelles",
+    "risk_rating": "MEDIUM",
+    "notes": "KuCoin Tron Hot Wallet 6"
+  },
+  {
+    "address": "TDD5uWd8k8E4q5q5eE8b9N9B9v8C7x6Z5a",
+    "name": "OKX",
+    "entity_type": "CEX",
+    "chain": "tron",
+    "role": "HOT_WALLET",
+    "nodal_email": "compliance@okx.com",
+    "fiu_registered": false,
+    "jurisdiction": "Seychelles",
+    "risk_rating": "MEDIUM",
+    "notes": "OKX TRC20 Operations"
+  },
+  {
+    "address": "TKfjV9DeNedEL238dGy8712398NnDEjkLm",
+    "name": "Bybit",
+    "entity_type": "CEX",
+    "chain": "tron",
+    "role": "HOT_WALLET",
+    "nodal_email": "compliance@bybit.com",
+    "fiu_registered": false,
+    "jurisdiction": "UAE",
+    "risk_rating": "MEDIUM",
+    "notes": "Bybit Tron Deposit Sweeper"
+  },
+  {
+    "address": "THb48ZpQy1E4rT5y6U7i8O9p0A1s2D3f4G",
+    "name": "FixedFloat",
+    "entity_type": "INSTANT_EXCHANGE",
+    "chain": "tron",
+    "role": "SWAP_ROUTER",
+    "nodal_email": "info@fixedfloat.com",
+    "fiu_registered": false,
+    "jurisdiction": "Seychelles",
+    "risk_rating": "HIGH",
+    "notes": "No-KYC Instant Swap Frequently Abused in Cyber Fraud Offramps"
+  },
+  {
+    "address": "TKzxdSv2x9JZrYcmvUKeNFX53pEd8dUMNV",
+    "name": "SunSwap V2",
+    "entity_type": "DEX",
+    "chain": "tron",
+    "role": "ROUTER",
+    "nodal_email": "support@sunswap.com",
+    "fiu_registered": false,
+    "jurisdiction": "Decentralized",
+    "risk_rating": "HIGH",
+    "notes": "Tron Decentralized Automated Market Maker"
+  }
+]

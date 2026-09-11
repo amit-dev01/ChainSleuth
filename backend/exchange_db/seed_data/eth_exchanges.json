@@ -1,0 +1,98 @@
+[
+  {
+    "address": "0x28C6c06298d514Db089934071355E5743bf21d60",
+    "name": "Binance",
+    "entity_type": "CEX",
+    "chain": "ethereum",
+    "role": "HOT_WALLET",
+    "nodal_email": "compliance@binance.com",
+    "fiu_registered": true,
+    "jurisdiction": "Global",
+    "risk_rating": "LOW",
+    "notes": "Binance 14 Hot Wallet"
+  },
+  {
+    "address": "0xDFd5293D8e347dFe59E90eFd55b2956a1343963d",
+    "name": "Binance",
+    "entity_type": "CEX",
+    "chain": "ethereum",
+    "role": "HOT_WALLET",
+    "nodal_email": "compliance@binance.com",
+    "fiu_registered": true,
+    "jurisdiction": "Global",
+    "risk_rating": "LOW",
+    "notes": "Binance 16 Hot Wallet"
+  },
+  {
+    "address": "0x5AC560e2FaB31d683BE1Fa183c5D3B8929A26fe0",
+    "name": "WazirX",
+    "entity_type": "CEX",
+    "chain": "ethereum",
+    "role": "HOT_WALLET",
+    "nodal_email": "nodal@wazirx.com",
+    "fiu_registered": true,
+    "jurisdiction": "India",
+    "risk_rating": "LOW",
+    "notes": "WazirX ETH Hot Wallet"
+  },
+  {
+    "address": "0x4b16c5dE96EB2117bBE5fd171E4d203624B014aa",
+    "name": "CoinDCX",
+    "entity_type": "CEX",
+    "chain": "ethereum",
+    "role": "HOT_WALLET",
+    "nodal_email": "lawenforcement@coindcx.com",
+    "fiu_registered": true,
+    "jurisdiction": "India",
+    "risk_rating": "LOW",
+    "notes": "CoinDCX ETH Hot Wallet"
+  },
+  {
+    "address": "0xd90e2f925DA726b50C4Ed8D0Fb90Ad053324F31b",
+    "name": "Tornado Cash",
+    "entity_type": "MIXER",
+    "chain": "ethereum",
+    "role": "MIXER_ROUTER",
+    "nodal_email": "none",
+    "fiu_registered": false,
+    "jurisdiction": "OFAC Sanctioned",
+    "risk_rating": "CRITICAL",
+    "notes": "OFAC Specially Designated Nationals (SDN) Mixer Router"
+  },
+  {
+    "address": "0x47CE0C6eD5B0Ce3d3A51fdb1C52DC66a7c3c2936",
+    "name": "Tornado Cash 0.1 ETH",
+    "entity_type": "MIXER",
+    "chain": "ethereum",
+    "role": "MIXER_POOL",
+    "nodal_email": "none",
+    "fiu_registered": false,
+    "jurisdiction": "OFAC Sanctioned",
+    "risk_rating": "CRITICAL",
+    "notes": "Tornado Cash 0.1 ETH Pool"
+  },
+  {
+    "address": "0x910Cbd523D972eb0a6f4cAe4618aD62622b39DbF",
+    "name": "Tornado Cash 1 ETH",
+    "entity_type": "MIXER",
+    "chain": "ethereum",
+    "role": "MIXER_POOL",
+    "nodal_email": "none",
+    "fiu_registered": false,
+    "jurisdiction": "OFAC Sanctioned",
+    "risk_rating": "CRITICAL",
+    "notes": "Tornado Cash 1 ETH Pool"
+  },
+  {
+    "address": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+    "name": "Uniswap V2 Router",
+    "entity_type": "DEX",
+    "chain": "ethereum",
+    "role": "ROUTER",
+    "nodal_email": "none",
+    "fiu_registered": false,
+    "jurisdiction": "Decentralized",
+    "risk_rating": "MEDIUM",
+    "notes": "Uniswap V2 Swapping Router"
+  }
+]

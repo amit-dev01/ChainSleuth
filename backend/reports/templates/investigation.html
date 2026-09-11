@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChainSleuth Forensic Crypto Investigation Report</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 15mm 20mm 15mm;
+            @bottom-right {
+                content: "Page " counter(page) " of " counter(pages);
+                font-family: 'Helvetica Neue', Arial, sans-serif;
+                font-size: 8pt;
+                color: #666;
+            }
+        }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #1a1a1a;
+            font-size: 10pt;
+            line-height: 1.4;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #002b49;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        .header h1 {
+            color: #002b49;
+            font-size: 14pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 4px 0;
+        }
+        .header h2 {
+            color: #4a5568;
+            font-size: 10pt;
+            font-weight: normal;
+            margin: 0;
+        }
+        .notice-banner {
+            background-color: #ebf8ff;
+            border: 1px solid #3182ce;
+            color: #2b6cb0;
+            padding: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 9.5pt;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .section-title {
+            background-color: #f7fafc;
+            border-left: 4px solid #002b49;
+            padding: 4px 8px;
+            font-size: 10.5pt;
+            font-weight: bold;
+            color: #2d3748;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        table.meta-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+        }
+        table.meta-table td {
+            padding: 4px 6px;
+            font-size: 9pt;
+            vertical-align: top;
+        }
+        table.meta-table td.label {
+            font-weight: bold;
+            color: #4a5568;
+            width: 22%;
+            background-color: #edf2f7;
+            border: 1px solid #cbd5e0;
+        }
+        table.meta-table td.value {
+            border: 1px solid #cbd5e0;
+        }
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+            font-size: 8.5pt;
+        }
+        table.data-table th {
+            background-color: #002b49;
+            color: #ffffff;
+            font-weight: 600;
+            text-align: left;
+            padding: 6px 4px;
+            border: 1px solid #002b49;
+        }
+        table.data-table td {
+            padding: 5px 4px;
+            border: 1px solid #e2e8f0;
+            word-break: break-all;
+        }
+        table.data-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 7.5pt;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .badge-critical { background-color: #fed7d7; color: #9b2c2c; }
+        .badge-high { background-color: #feebc8; color: #c05621; }
+        .badge-low { background-color: #c6f6d5; color: #22543d; }
+        .legal-box {
+            border: 1.5px dashed #c53030;
+            background-color: #fff5f5;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 4px;
+        }
+        .legal-box h3 {
+            color: #9b2c2c;
+            margin: 0 0 6px 0;
+            font-size: 10pt;
+            text-transform: uppercase;
+        }
+        .legal-box p, .legal-box ol {
+            margin: 0;
+            font-size: 8.5pt;
+            color: #4a5568;
+        }
+        .legal-box ol {
+            padding-left: 18px;
+            margin-top: 4px;
+        }
+        .signature-block {
+            margin-top: 25px;
+            width: 100%;
+        }
+        .signature-block td {
+            width: 50%;
+            vertical-align: top;
+            font-size: 9pt;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>State Cyber Crime Investigation Bureau</h1>
+        <h2>Cryptocurrency Forensic Cell &bull; SIH26183 Enforcement Unit</h2>
+        <div style="font-size: 8.5pt; color: #718096; margin-top: 3px;">
+            Generated via ChainSleuth Automated Tracing & Attribution System
+        </div>
+    </div>
+
+    <div class="notice-banner">
+        LEGAL NOTICE UNDER SECTION 91 Cr.P.C. / SECTION 94 BHARATIYA NAGARIK SURAKSHA SANHITA (BNSS), 2023
+    </div>
+
+    <div class="section-title">Case Particulars & Victim Report</div>
+    <table class="meta-table">
+        <tr>
+            <td class="label">FIR / Case No.</td>
+            <td class="value"><strong>{{ case_number }}</strong></td>
+            <td class="label">Incident Date</td>
+            <td class="value">{{ incident_date }}</td>
+        </tr>
+        <tr>
+            <td class="label">Police Station</td>
+            <td class="value">{{ police_station }}</td>
+            <td class="label">Investigating Officer</td>
+            <td class="value">{{ io_name }} ({{ io_badge }})</td>
+        </tr>
+        <tr>
+            <td class="label">Victim Name</td>
+            <td class="value">{{ victim_name }}</td>
+            <td class="label">Total Loss (INR / USDT)</td>
+            <td class="value"><strong>₹{{ victim_loss_inr }}</strong> (approx. {{ victim_loss_usdt }} USDT)</td>
+        </tr>
+        <tr>
+            <td class="label">Suspect Wallet</td>
+            <td class="value" colspan="3"><code style="font-size: 8.5pt;">{{ seed_address }}</code> ({{ chain|upper }})</td>
+        </tr>
+    </table>
+
+    <div class="section-title">Forensic Fund Flow & Terminal VASP Attribution</div>
+    <p style="font-size: 8.5pt; margin: 0 0 6px 0;">
+        BFS tracing completed across <strong>{{ total_hops }}</strong> hops with an overall attribution rate of <strong>{{ attribution_pct }}%</strong>.
+        Stolen assets were successfully tracked to the following Virtual Asset Service Provider (VASP):
+    </p>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width: 6%;">Hop</th>
+                <th style="width: 28%;">Origin Address</th>
+                <th style="width: 28%;">Beneficiary / Deposit Address</th>
+                <th style="width: 14%;">Amount (USDT)</th>
+                <th style="width: 24%;">Attributed VASP / Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in hop_breakdown %}
+            <tr>
+                <td style="text-align: center;"><strong>{{ item.hop }}</strong></td>
+                <td><code style="font-size: 7.5pt;">{{ item.from_address }}</code></td>
+                <td><code style="font-size: 7.5pt;">{{ item.to_address }}</code></td>
+                <td><strong>{{ "%.2f"|format(item.amount) }}</strong></td>
+                <td>
+                    <strong>{{ item.entity_name }}</strong><br>
+                    <span style="font-size: 7pt; color: #718096;">{{ item.entity_role }}</span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="section-title">Identified Destination VASP & Custodial Freezing Directive</div>
+    <table class="meta-table">
+        <tr>
+            <td class="label">Terminal VASP</td>
+            <td class="value"><strong>{{ terminal_vasp }}</strong></td>
+            <td class="label">FIU-IND Registration</td>
+            <td class="value">
+                {% if fiu_registered %}
+                <span class="badge badge-low">Registered with FIU-IND</span>
+                {% else %}
+                <span class="badge badge-high">Non-FIU / Offshore</span>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td class="label">Deposit / Terminal Vault</td>
+            <td class="value" colspan="3"><code style="font-size: 8.5pt;">{{ terminal_deposit_address }}</code></td>
+        </tr>
+        <tr>
+            <td class="label">Compliance Contact</td>
+            <td class="value" colspan="3">{{ vasp_nodal_email }}</td>
+        </tr>
+    </table>
+
+    <div class="legal-box">
+        <h3>Mandatory Requisition for Immediate Asset Freeze</h3>
+        <p>To the Nodal / Compliance Officer of <strong>{{ terminal_vasp }}</strong>:</p>
+        <p style="margin-top: 4px;">
+            In exercise of the powers conferred under <strong>Section 91 of the Code of Criminal Procedure, 1973 (read with Section 94 of BNSS, 2023)</strong>, you are hereby directed to:
+        </p>
+        <ol>
+            <li><strong>IMMEDIATELY FREEZE / LOCK</strong> all crypto and fiat balances lying in the user account associated with deposit address <code>{{ terminal_deposit_address }}</code>.</li>
+            <li>Furnish certified copies of complete <strong>KYC documents</strong> (ID, Photo, Registered Name, Mobile, Email, Bank Account details) of the account holder.</li>
+            <li>Furnish complete <strong>IP Login Logs</strong> with timestamps and port numbers for the last 6 months.</li>
+            <li>Submit compliance report to the undersigned within <strong>24 hours</strong> of receipt of this requisition.</li>
+        </ol>
+    </div>
+
+    <table class="signature-block">
+        <tr>
+            <td>
+                <strong>Report Generated:</strong> {{ timestamp_str }}<br>
+                <strong>Audit Hash:</strong> {{ audit_hash }}<br>
+                <strong>System:</strong> ChainSleuth Forensic Engine v1.0
+            </td>
+            <td style="text-align: right;">
+                <div style="margin-bottom: 30px;">Digitally Verified & Signed</div>
+                <strong>{{ io_name }}</strong><br>
+                Investigating Officer / Inspector of Police<br>
+                State Cyber Crime Police Station
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

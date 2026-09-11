@@ -1,0 +1,152 @@
+version: "3.8"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: chainsleuth_api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://chainsleuth:chainsleuth_secure_pass_2026@postgres:5432/chainsleuth_db
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - NEO4J_URI=bolt://neo4j:7687
+      - NEO4J_USER=neo4j
+      - NEO4J_PASSWORD=chainsleuth_neo4j_pass_2026
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      neo4j:
+        condition: service_healthy
+    volumes:
+      - ./:/app
+    networks:
+      - chainsleuth_net
+
+  celery_worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: chainsleuth_celery_worker
+    restart: unless-stopped
+    command: celery -A backend.tasks.celery_app.celery_app worker --loglevel=info --concurrency=4
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://chainsleuth:chainsleuth_secure_pass_2026@postgres:5432/chainsleuth_db
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - NEO4J_URI=bolt://neo4j:7687
+      - NEO4J_USER=neo4j
+      - NEO4J_PASSWORD=chainsleuth_neo4j_pass_2026
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      neo4j:
+        condition: service_healthy
+    volumes:
+      - ./:/app
+    networks:
+      - chainsleuth_net
+
+  celery_beat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: chainsleuth_celery_beat
+    restart: unless-stopped
+    command: celery -A backend.tasks.celery_app.celery_app beat --loglevel=info
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://chainsleuth:chainsleuth_secure_pass_2026@postgres:5432/chainsleuth_db
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - NEO4J_URI=bolt://neo4j:7687
+      - NEO4J_USER=neo4j
+      - NEO4J_PASSWORD=chainsleuth_neo4j_pass_2026
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./:/app
+    networks:
+      - chainsleuth_net
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: chainsleuth_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: chainsleuth
+      POSTGRES_PASSWORD: chainsleuth_secure_pass_2026
+      POSTGRES_DB: chainsleuth_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U chainsleuth -d chainsleuth_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - chainsleuth_net
+
+  redis:
+    image: redis:7-alpine
+    container_name: chainsleuth_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - chainsleuth_net
+
+  neo4j:
+    image: neo4j:5-community
+    container_name: chainsleuth_neo4j
+    restart: unless-stopped
+    environment:
+      - NEO4J_AUTH=neo4j/chainsleuth_neo4j_pass_2026
+      - NEO4J_PLUGINS=["apoc"]
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - neo4j_data:/data
+    healthcheck:
+      test: ["CMD", "cypher-shell", "-u", "neo4j", "-p", "chainsleuth_neo4j_pass_2026", "RETURN 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+    networks:
+      - chainsleuth_net
+
+volumes:
+  postgres_data:
+  redis_data:
+  neo4j_data:
+
+networks:
+  chainsleuth_net:
+    driver: bridge

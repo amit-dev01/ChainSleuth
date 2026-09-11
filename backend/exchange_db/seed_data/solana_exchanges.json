@@ -1,0 +1,50 @@
+[
+  {
+    "address": "5tzFkiKscMRHK5ZXWBraXZHgYTUEYTM3MQNCGfj13bPr",
+    "name": "Binance",
+    "entity_type": "CEX",
+    "chain": "solana",
+    "role": "HOT_WALLET",
+    "nodal_email": "compliance@binance.com",
+    "fiu_registered": true,
+    "jurisdiction": "Global",
+    "risk_rating": "LOW",
+    "notes": "Binance Solana Hot Wallet"
+  },
+  {
+    "address": "9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+    "name": "Binance",
+    "entity_type": "CEX",
+    "chain": "solana",
+    "role": "DEPOSIT_SWEEPER",
+    "nodal_email": "compliance@binance.com",
+    "fiu_registered": true,
+    "jurisdiction": "Global",
+    "risk_rating": "LOW",
+    "notes": "Binance Solana Deposit Aggregation Vault"
+  },
+  {
+    "address": "675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8",
+    "name": "Raydium Liquidity Pool V4",
+    "entity_type": "DEX",
+    "chain": "solana",
+    "role": "ROUTER",
+    "nodal_email": "none",
+    "fiu_registered": false,
+    "jurisdiction": "Decentralized",
+    "risk_rating": "MEDIUM",
+    "notes": "Raydium Automated Market Maker"
+  },
+  {
+    "address": "JUP6LkbZbjS1jKKwapdHNy74zbZ3tLUZoi5QNyVTaV4",
+    "name": "Jupiter Aggregator V6",
+    "entity_type": "DEX_AGGREGATOR",
+    "chain": "solana",
+    "role": "ROUTER",
+    "nodal_email": "none",
+    "fiu_registered": false,
+    "jurisdiction": "Decentralized",
+    "risk_rating": "MEDIUM",
+    "notes": "Jupiter DEX Routing Engine"
+  }
+]
